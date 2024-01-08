@@ -45,7 +45,8 @@ def next_empty_row(board, col):
         if board[row][col] == 0:
             return row
 
-
+def print_board(board):
+    print(np.flip(print_board, 0))
 
 def main():
     """the mains game loop"""
