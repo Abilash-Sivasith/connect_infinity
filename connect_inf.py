@@ -21,6 +21,8 @@ YELLOW = (255, 255, 0)
 ROW_COUNT = 10
 COL_COUNT = 10
 
+CURRENT_CONNECT_GAME = 3
+
 def create_board():
     '''creates the game board'''
     board = np.zeros((ROW_COUNT, COL_COUNT))
@@ -29,4 +31,26 @@ def create_board():
 def drop_peice(board, row, col, peice):
     """sets the row and column in which the peice has been dropped"""
     board[row][col] = peice
+
+def is_valid_location(board, col, row):
+    """returns False is there is no peice at that row, column location"""
+    is_there_a_peice = board[row][col]
+    if is_there_a_peice == 0:
+        return False
+    return True
+
+def next_empty_row(board, col):
+    '''finds the nect empty row and returns its index'''
+    for row in range(ROW_COUNT):
+        if board[row][col] == 0:
+            return row
+
+
+
+def main():
+    """the mains game loop"""
+    game_over = False
+    while game_over is False:
+        pass
+
 
