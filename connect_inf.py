@@ -46,6 +46,7 @@ def next_empty_row(board, col):
             return row
 
 def print_board(board):
+    """function to print the game board"""
     print(np.flip(print_board, 0))
 
 def main():
