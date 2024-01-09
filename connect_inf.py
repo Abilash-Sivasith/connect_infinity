@@ -65,6 +65,7 @@ def winning_move_connect_3(board, peice):
         for row in range(3, ROW_COUNT):
             if board[row][col] == peice and board[row - 1][col + 1] == peice and board[row - 3][col + 3] == peice:
                 return True # winning move by 3 in a row diagonal slope downwards
+            
     for col in range(COL_COUNT - 3):
         for row in range(ROW_COUNT - 3):
             if board[row][col] == peice and board[row + 1][col + 1] == peice and board[row + 2][col + 2] == peice:
