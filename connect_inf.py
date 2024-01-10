@@ -12,6 +12,7 @@ Rules:
 import numpy as np
 import pygame
 import math
+import sys
 
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
@@ -88,9 +89,9 @@ def draw_board(board):
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):		
 			if board[row][col] == 1:
-				pygame.draw.circle(SCREEN, RED, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+				pygame.draw.circle(SCREEN, RED, (int(col * SQUARE_SIZE+SQUARE_SIZE/2), height-int(row * SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
 			elif board[row][col] == 2: 
-				pygame.draw.circle(SCREEN, YELLOW, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+				pygame.draw.circle(SCREEN, YELLOW, (int(col * SQUARE_SIZE+SQUARE_SIZE/2), height-int(row * SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
 	pygame.display.update()
 
 
