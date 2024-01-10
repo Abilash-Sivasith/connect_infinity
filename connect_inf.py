@@ -99,8 +99,48 @@ SCREEN = pygame.display.set_mode(size)
 
 def main():
     """the mains game loop"""
+    board = create_board()
+    print_board(board)
     full_game_over = False
+    turn  = 0
     while full_game_over is False:
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                pygame.draw.rect(SCREEN, BLACK, (0, 0, width, SQUARE_SIZE))
+                position_x = event.pos[0]
+                if turn == 0:
+                    pygame.draw.cricle(SCREEN, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
+                else:
+                    pygame.draw.circle(SCREEN, YELLOW, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
+            
+            pygame.display.update()
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pygame.draw.rect(SCREEN, BLACK (0, 0, width, SQUARE_SIZE))
+                if turn == 0:
+                    position_x = event.pos[0]
+                    col = int(math.floor(position_x / SQUARE_SIZE))
+                    
+                    if is_valid_location(board, col) is True:
+                        row = next_empty_row(board, col)
+                        drop_peice(board, row, col, 1)
+                        
+                        if winning_move_connect_3(board, 1) is True:
+                            label = font.render("Player 1 wins!!", 1, RED)
+                            SCREEN.blit(label, (40,10))
+                            full_game_over = True
+                else:
+                    pass
+                    
+                        
+
+                
+            
+
+                
+                    
+                 
 
 
