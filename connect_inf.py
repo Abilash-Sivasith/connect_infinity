@@ -21,7 +21,15 @@ YELLOW = (255, 255, 0)
 ROW_COUNT = 10
 COL_COUNT = 10
 
-CURRENT_CONNECT_GAME = 3
+SQUARE_SIZE = 100
+width = COL_COUNT * SQUARE_SIZE
+height = ROW_COUNT * SQUARE_SIZE
+size = (width, height)
+
+CIRCLE_RADIUS = int(SQUARE_SIZE / 2 - 5)
+
+
+CURRENT_CONNECT_GAME = 4
 
 def create_board():
     '''creates the game board'''
@@ -70,6 +78,12 @@ def winning_move_connect_3(board, peice):
         for row in range(ROW_COUNT - 3):
             if board[row][col] == peice and board[row + 1][col + 1] == peice and board[row + 2][col + 2] == peice and board[row + 3][col + 3]:
                 return True # winning move by 4 in a row diagonal slope upwards
+
+def draw_board(board):
+    '''draws the game board in pygame'''
+    for col in range(COL_COUNT):
+        for row in range(ROW_COUNT):
+            pass
 
 
 
