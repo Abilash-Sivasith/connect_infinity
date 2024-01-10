@@ -54,22 +54,22 @@ def winning_move_connect_3(board, peice):
     for col in range(COL_COUNT - 3):
         for row in range(ROW_COUNT):
             if board[row][col] == peice and board[row][col + 1] == peice and board[row][col + 2] == peice and board[row][col + 3]:
-                return True # winning move by 3 in a row horizontally
+                return True # winning move by 4 in a row horizontally
     
     for col in range(COL_COUNT):
         for row in range(ROW_COUNT - 3):
             if board[row][col] == peice and board[row + 1][col] == peice and board[row + 2][col] == peice and board[row + 3][col]:
-                return True # winning move by 3 in a row vertically
+                return True # winning move by 4 in a row vertically
             
     for col in range(COL_COUNT - 3):
         for row in range(3, ROW_COUNT):
             if board[row][col] == peice and board[row - 1][col + 1] == peice and board[row - 2][col + 2] == peice and board[row - 3][col + 3]:
-                return True # winning move by 3 in a row diagonal slope downwards
+                return True # winning move by 4 in a row diagonal slope downwards
             
     for col in range(COL_COUNT - 3):
         for row in range(ROW_COUNT - 3):
             if board[row][col] == peice and board[row + 1][col + 1] == peice and board[row + 2][col + 2] == peice and board[row + 3][col + 3]:
-                return True # winning move by 3 in a row diagonal slope upwards
+                return True # winning move by 4 in a row diagonal slope upwards
 
 
 
