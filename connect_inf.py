@@ -26,10 +26,10 @@ width = COL_COUNT * SQUARE_SIZE
 height = ROW_COUNT * SQUARE_SIZE
 size = (width, height)
 
-CIRCLE_RADIUS = int(SQUARE_SIZE / 2 - 5)
+CIRCLE_RAD = int(SQUARE_SIZE / 2 - 5)
 
+font = pygame.font.SysFont("monospace", 75)
 
-CURRENT_CONNECT_GAME = 4
 
 def create_board():
     '''creates the game board'''
@@ -80,12 +80,21 @@ def winning_move_connect_3(board, peice):
                 return True # winning move by 4 in a row diagonal slope upwards
 
 def draw_board(board):
-    '''draws the game board in pygame'''
-    for col in range(COL_COUNT):
-        for row in range(ROW_COUNT):
-            pass
+	for col in range(COL_COUNT):
+		for row in range(ROW_COUNT):
+			pygame.draw.rect(SCREEN, BLUE, (col * SQUARE_SIZE, row * SQUARE_SIZE + SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+			pygame.draw.circle(SCREEN, BLACK, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), int(row * SQUARE_SIZE + SQUARE_SIZE + SQUARE_SIZE/2)), CIRCLE_RAD)
+	
+	for col in range(COL_COUNT):
+		for row in range(ROW_COUNT):		
+			if board[row][col] == 1:
+				pygame.draw.circle(SCREEN, RED, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+			elif board[row][col] == 2: 
+				pygame.draw.circle(SCREEN, YELLOW, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+	pygame.display.update()
 
 
+SCREEN = pygame.display.set_mode(size)
 
 def main():
     """the mains game loop"""
