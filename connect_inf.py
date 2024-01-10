@@ -84,14 +84,14 @@ def draw_board(board):
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):
 			pygame.draw.rect(SCREEN, BLUE, (col * SQUARE_SIZE, row * SQUARE_SIZE + SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-			pygame.draw.circle(SCREEN, BLACK, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), int(row * SQUARE_SIZE + SQUARE_SIZE + SQUARE_SIZE/2)), CIRCLE_RAD)
+			pygame.draw.circle(SCREEN, BLACK, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), int(row * SQUARE_SIZE + SQUARE_SIZE + SQUARE_SIZE / 2)), CIRCLE_RAD)
 	
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):		
 			if board[row][col] == 1:
-				pygame.draw.circle(SCREEN, RED, (int(col * SQUARE_SIZE+SQUARE_SIZE/2), height-int(row * SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+				pygame.draw.circle(SCREEN, RED, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), height - int(row * SQUARE_SIZE+SQUARE_SIZE / 2)), CIRCLE_RAD)
 			elif board[row][col] == 2: 
-				pygame.draw.circle(SCREEN, YELLOW, (int(col * SQUARE_SIZE+SQUARE_SIZE/2), height-int(row * SQUARE_SIZE+SQUARE_SIZE/2)), CIRCLE_RAD)
+				pygame.draw.circle(SCREEN, YELLOW, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), height - int(row * SQUARE_SIZE+SQUARE_SIZE / 2)), CIRCLE_RAD)
 	pygame.display.update()
 
 
