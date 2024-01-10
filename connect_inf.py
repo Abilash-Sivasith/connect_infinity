@@ -75,8 +75,8 @@ def winning_move_connect_3(board, peice):
 
 def main():
     """the mains game loop"""
-    game_over = False
-    while game_over is False:
+    full_game_over = False
+    while full_game_over is False:
         pass
 
 
