@@ -29,7 +29,7 @@ size = (width, height)
 
 CIRCLE_RAD = int(SQUARE_SIZE / 2 - 5)
 
-font = pygame.font.SysFont("monospace", 75)
+#font = pygame.display.SysFont("monospace", 75)
 
 
 def create_board():
@@ -41,12 +41,12 @@ def drop_peice(board, row, col, peice):
     """sets the row and column in which the peice has been dropped"""
     board[row][col] = peice
 
-def is_valid_location(board, col, row):
+def is_valid_location(board, col):
     """returns False is there is no peice at that row, column location"""
-    is_there_a_peice = board[row][col]
+    is_there_a_peice = board[ROW_COUNT - 1][col]
     if is_there_a_peice == 0:
-        return False
-    return True
+        return True
+    return False
 
 def next_empty_row(board, col):
     '''finds the nect empty row and returns its index'''
@@ -56,7 +56,7 @@ def next_empty_row(board, col):
 
 def print_board(board):
     """function to print the game board"""
-    print(np.flip(print_board, 0))
+    print(np.flip(board, 0))
 
 def winning_move_connect_3(board, peice):
     '''checks and return True if the winning move for connect 3 i played'''
@@ -80,7 +80,7 @@ def winning_move_connect_3(board, peice):
             if board[row][col] == peice and board[row + 1][col + 1] == peice and board[row + 2][col + 2] == peice and board[row + 3][col + 3]:
                 return True # winning move by 4 in a row diagonal slope upwards
 
-def draw_board(board):
+def draw_board(board, SCREEN):
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):
 			pygame.draw.rect(SCREEN, BLUE, (col * SQUARE_SIZE, row * SQUARE_SIZE + SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
@@ -95,12 +95,14 @@ def draw_board(board):
 	pygame.display.update()
 
 
-SCREEN = pygame.display.set_mode(size)
 
 def main():
     """the mains game loop"""
+    SCREEN = pygame.display.set_mode(size)
     board = create_board()
     print_board(board)
+    draw_board(board, SCREEN)
+    pygame.display.update()
     full_game_over = False
     turn  = 0
     while full_game_over is False:
@@ -111,14 +113,14 @@ def main():
                 pygame.draw.rect(SCREEN, BLACK, (0, 0, width, SQUARE_SIZE))
                 position_x = event.pos[0]
                 if turn == 0:
-                    pygame.draw.cricle(SCREEN, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
+                    pygame.draw.circle(SCREEN, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
                 else:
                     pygame.draw.circle(SCREEN, YELLOW, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
             
             pygame.display.update()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.draw.rect(SCREEN, BLACK (0, 0, width, SQUARE_SIZE))
+                pygame.draw.rect(SCREEN, BLACK, (0, 0, width, SQUARE_SIZE))
                 if turn == 0:
                     position_x = event.pos[0]
                     col = int(math.floor(position_x / SQUARE_SIZE))
@@ -128,33 +130,38 @@ def main():
                         drop_peice(board, row, col, 1)
                         
                         if winning_move_connect_3(board, 1) is True:
-                            label = font.render("Player 1 wins!!", 1, RED)
-                            SCREEN.blit(label, (40,10))
+                            #label = font.render("Player 1 wins!!", 1, RED)
+                            print('player 1 wins')
+                            #SCREEN.blit(label, (40,10))
                             full_game_over = True
                 else:
                     position_x = event.pos[0]
                     col = int(math.floor(position_x / SQUARE_SIZE))
                     
-                    if is_valid_location(board, col):
+                    if is_valid_location(board, col) is True:
                         row = next_empty_row(board, col)
-                        drop_peice(board, row, col, 1)
+                        drop_peice(board, row, col, 2)
                         
-                        if winning_move_connect_3(board , 1):
-                            label = font.render("Player 1 wins!!", 1, RED)
+                        if winning_move_connect_3(board , 2):
+                            #label = font.render("Player 1 wins!!", 1, RED)
+                            label = 'P2 Wins'
+                            print('player 2 wins')
                             SCREEN.blit(label, (40,10))
                             full_game_over = True
                             
                 print_board(board)
-                draw_board(board)
+                draw_board(board, SCREEN)
                 
                 turn = (turn + 1) % 2 
+                if full_game_over is True:
+                    pygame.time.wait(3000)
                 
                             
                     
                         
 
                 
-            
+main()
 
                 
                     
