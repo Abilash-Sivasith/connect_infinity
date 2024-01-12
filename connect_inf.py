@@ -132,7 +132,24 @@ def main():
                             SCREEN.blit(label, (40,10))
                             full_game_over = True
                 else:
-                    pass
+                    position_x = event.pos[0]
+                    col = int(math.floor(position_x / SQUARE_SIZE))
+                    
+                    if is_valid_location(board, col):
+                        row = next_empty_row(board, col)
+                        drop_peice(board, row, col, 1)
+                        
+                        if winning_move_connect_3(board , 1):
+                            label = font.render("Player 1 wins!!", 1, RED)
+                            SCREEN.blit(label, (40,10))
+                            full_game_over = True
+                            
+                print_board(board)
+                draw_board(board)
+                
+                turn = (turn + 1) % 2 
+                
+                            
                     
                         
 
