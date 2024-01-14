@@ -22,7 +22,7 @@ YELLOW = (255, 255, 0)
 ROW_COUNT = 10
 COL_COUNT = 10
 
-SQUARE_SIZE = 100
+SQUARE_SIZE = 75
 width = COL_COUNT * SQUARE_SIZE
 height = ROW_COUNT * SQUARE_SIZE
 size = (width, height)
@@ -116,7 +116,8 @@ def main():
                     pygame.draw.circle(SCREEN, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
                 else:
                     pygame.draw.circle(SCREEN, YELLOW, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
-            
+            print_board(board)
+            draw_board(board, SCREEN)
             pygame.display.update()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -154,7 +155,7 @@ def main():
                 
                 turn = (turn + 1) % 2 
                 if full_game_over is True:
-                    pygame.time.wait(3000)
+                    pygame.time.wait(10000)
                 
                             
                     
