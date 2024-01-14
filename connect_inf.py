@@ -14,6 +14,8 @@ import pygame
 import math
 import sys
 
+pygame.init()
+
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 RED = (255 ,0 ,0)
@@ -29,7 +31,7 @@ size = (width, height)
 
 CIRCLE_RAD = int(SQUARE_SIZE / 2 - 5)
 
-#font = pygame.display.SysFont("monospace", 75)
+font = pygame.font.SysFont(None, 75)
 
 
 def create_board():
@@ -131,9 +133,9 @@ def main():
                         drop_peice(board, row, col, 1)
                         
                         if winning_move_connect_3(board, 1) is True:
-                            #label = font.render("Player 1 wins!!", 1, RED)
+                            label = font.render("Player 1 wins!!", 1, RED)
                             print('player 1 wins')
-                            #SCREEN.blit(label, (40,10))
+                            SCREEN.blit(label, (40,10))
                             full_game_over = True
                 else:
                     position_x = event.pos[0]
@@ -144,8 +146,7 @@ def main():
                         drop_peice(board, row, col, 2)
                         
                         if winning_move_connect_3(board , 2):
-                            #label = font.render("Player 1 wins!!", 1, RED)
-                            label = 'P2 Wins'
+                            label = font.render("Player 1 wins!!", 1, RED)
                             print('player 2 wins')
                             SCREEN.blit(label, (40,10))
                             full_game_over = True
@@ -155,7 +156,7 @@ def main():
                 
                 turn = (turn + 1) % 2 
                 if full_game_over is True:
-                    pygame.time.wait(10000)
+                    pygame.time.wait(8000)
                 
                             
                     
