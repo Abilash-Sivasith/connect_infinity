@@ -135,10 +135,12 @@ def main():
     connect_x = 4
     SCREEN = pygame.display.set_mode(size)
     board = create_board()
-    #print_board(board)
     draw_board(board, SCREEN)
     pygame.display.update()
     full_game_over = False
+    connect_4_won = False
+    connect_5_won = False
+    connect_6_won = False
     turn  = 0
     while full_game_over is False:
         for event in pygame.event.get():
@@ -199,7 +201,9 @@ def main():
 main()
 
                 
-                    
+def main(connect_4_won, connect_5_won, connect_6_won):
+    '''main games logic'''
+    pass         
                  
 
 
