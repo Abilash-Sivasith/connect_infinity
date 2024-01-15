@@ -83,9 +83,47 @@ def winning_move_connect_3(board, peice):
                 return True # winning move by 4 in a row diagonal slope upwards
 
 
-def winning_move_for_connect_x(board, peice, connect_x):
+def winning_move_for_connect_x(board, peice, x):
     """ generalised algo for any game of connect_x """
-    pass
+    for col in range(COL_COUNT - (x - 1)):
+        for row in range(ROW_COUNT):
+            z = 0 
+            connect_x = False
+            while z < (connect_x - 1):
+                if board[row][col + z] == peice:
+                    connect_x = True
+                else:
+                    connect_x = False
+                z += 1
+            if connect_x == True:
+                return True # winning move by 4 in a row horizontally
+    for col in range(COL_COUNT - (x - 1)):
+        for row in range(ROW_COUNT):
+            z = 0 
+            connect_x = False
+            while z < (connect_x - 1):
+                if board[row + z][col] == peice:
+                    connect_x = True
+                else:
+                    connect_x = False
+                z += 1
+            if connect_x == True:
+                return True # winning move by 4 in a row veritcally
+    for col in range(COL_COUNT - (x - 1)):
+        for row in range(ROW_COUNT):
+            z = 0 
+            connect_x = False
+            while z < (connect_x - 1):
+                if board[row - z][col + z] == peice:
+                    connect_x = True
+                else:
+                    connect_x = False
+                z += 1
+            if connect_x == True:
+                return True # winning move by 4 in a row horizontally
+    
+
+
 
 def draw_board(board, SCREEN):
 	for col in range(COL_COUNT):
