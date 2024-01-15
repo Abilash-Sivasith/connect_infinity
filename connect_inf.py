@@ -34,6 +34,7 @@ CIRCLE_RAD = int(SQUARE_SIZE / 2 - 5)
 font = pygame.font.SysFont(None, 75)
 
 
+
 def create_board():
     '''creates the game board'''
     board = np.zeros((ROW_COUNT, COL_COUNT))
@@ -121,6 +122,19 @@ def winning_move_for_connect_x(board, peice, x):
                 z += 1
             if connect_x == True:
                 return True # winning move by 4 in a row horizontally
+            
+    for col in range(COL_COUNT - (x - 1)):
+        for row in range(ROW_COUNT):
+            z = 0 
+            connect_x = False
+            while z < (connect_x - 1):
+                if board[row + z][col + z] == peice:
+                    connect_x = True
+                else:
+                    connect_x = False
+                z += 1
+            if connect_x == True:
+                return True # winning move by 4 in a row horizontally
     
 
 
@@ -143,6 +157,7 @@ def draw_board(board, SCREEN):
 
 def main():
     """the mains game loop"""
+    connect_x = 4
     SCREEN = pygame.display.set_mode(size)
     board = create_board()
     print_board(board)
