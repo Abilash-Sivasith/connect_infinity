@@ -86,55 +86,56 @@ def winning_move_connect_3(board, peice):
 
 def winning_move_for_connect_x(board, peice, x):
     """ generalised algo for any game of connect_x """
-    for col in range(COL_COUNT - (x - 1)):
+    for col in range(COL_COUNT - x - 1):
         for row in range(ROW_COUNT):
+            in_a_row = 0 
             z = 0 
-            connect_x = False
-            while z < (connect_x - 1):
+            while z < (x):
                 if board[row][col + z] == peice:
-                    connect_x = True
+                    in_a_row += 1
                 else:
-                    connect_x = False
+                    in_a_row = 0
                 z += 1
-            if connect_x == True:
+            if in_a_row == x:
                 return True # winning move by 4 in a row horizontally
-    for col in range(COL_COUNT - (x - 1)):
-        for row in range(ROW_COUNT):
+    for col in range(COL_COUNT):
+        for row in range(ROW_COUNT - x - 1):
+            in_a_row = 0
             z = 0 
-            connect_x = False
-            while z < (connect_x - 1):
+            while z < (x):
                 if board[row + z][col] == peice:
-                    connect_x = True
+                    in_a_row += 1
                 else:
-                    connect_x = False
+                    in_a_row = 0
                 z += 1
-            if connect_x == True:
+            if in_a_row == x:
                 return True # winning move by 4 in a row veritcally
-    for col in range(COL_COUNT - (x - 1)):
-        for row in range(ROW_COUNT):
-            z = 0 
-            connect_x = False
-            while z < (connect_x - 1):
-                if board[row - z][col + z] == peice:
-                    connect_x = True
-                else:
-                    connect_x = False
-                z += 1
-            if connect_x == True:
-                return True # winning move by 4 in a row horizontally
             
-    for col in range(COL_COUNT - (x - 1)):
+    for col in range(COL_COUNT - x - 1):
         for row in range(ROW_COUNT):
             z = 0 
-            connect_x = False
-            while z < (connect_x - 1):
-                if board[row + z][col + z] == peice:
-                    connect_x = True
+            in_a_row = 0
+            while z < (x):
+                if board[row - z][col + z] == peice:
+                    in_a_row += 1
                 else:
-                    connect_x = False
+                    in_a_row = 0 
                 z += 1
-            if connect_x == True:
-                return True # winning move by 4 in a row horizontally
+            if in_a_row == x:
+                return True # winning move by 4 in a row diagonally
+            
+    for col in range(COL_COUNT - x - 1):
+        for row in range(ROW_COUNT - x - 1):
+            z = 0 
+            in_a_row = 0
+            while z < (x):
+                if board[row + z][col + z] == peice:
+                    in_a_row += 1
+                else:
+                    in_a_row = 0 
+                z += 1
+            if in_a_row == x:
+                return True # winning move by 4 in a row diaganlly
     
 
 
@@ -160,7 +161,7 @@ def main():
     connect_x = 4
     SCREEN = pygame.display.set_mode(size)
     board = create_board()
-    print_board(board)
+    #print_board(board)
     draw_board(board, SCREEN)
     pygame.display.update()
     full_game_over = False
@@ -176,7 +177,7 @@ def main():
                     pygame.draw.circle(SCREEN, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
                 else:
                     pygame.draw.circle(SCREEN, YELLOW, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
-            print_board(board)
+            #print_board(board)
             draw_board(board, SCREEN)
             pygame.display.update()
             
@@ -190,7 +191,7 @@ def main():
                         row = next_empty_row(board, col)
                         drop_peice(board, row, col, 1)
                         
-                        if winning_move_connect_3(board, 1) is True:
+                        if winning_move_for_connect_x(board, 1, connect_x) is True:
                             label = font.render("Player 1 wins!!", 1, RED)
                             print('player 1 wins')
                             SCREEN.blit(label, (40,10))
@@ -203,13 +204,13 @@ def main():
                         row = next_empty_row(board, col)
                         drop_peice(board, row, col, 2)
                         
-                        if winning_move_connect_3(board , 2):
+                        if winning_move_for_connect_x(board , 2, connect_x):
                             label = font.render("Player 1 wins!!", 1, RED)
                             print('player 2 wins')
                             SCREEN.blit(label, (40,10))
                             full_game_over = True
                             
-                print_board(board)
+                #print_board(board)
                 draw_board(board, SCREEN)
                 
                 turn = (turn + 1) % 2 
