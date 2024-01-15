@@ -113,9 +113,6 @@ def winning_move_for_connect_x(board, peice, x):
                 z += 1
             if in_a_row == x:
                 return True # winning move by 4 in a row diaganlly
-    
-
-
 
 def draw_board(board, SCREEN):
 	for col in range(COL_COUNT):
