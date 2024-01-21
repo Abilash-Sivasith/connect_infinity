@@ -130,7 +130,7 @@ def draw_board(board, SCREEN):
 
 
 
-def main():
+'''def main():
     """the mains game loop"""
     connect_x = 4
     SCREEN = pygame.display.set_mode(size)
@@ -193,17 +193,24 @@ def main():
                 if full_game_over is True:
                     pygame.time.wait(8000)
                 
-                            
+                           ''' 
                     
                         
 
                 
-main()
-
-                
 def main(connect_4_won, connect_5_won, connect_6_won):
     '''main games logic'''
-    pass         
+    full_game_over = False
+    connect_x = 4
+    SCREEN = pygame.display.set_mode(size)
+    board = create_board()
+    draw_board(board, SCREEN)
+    pygame.display.update()
+    turn = 0
+    while full_game_over is not True:
+        if connect_4_won == True and connect_5_won == True and connect_6_won == True:
+            full_game_over = True
+                     
                  
 
-
+main(True, False, True)
