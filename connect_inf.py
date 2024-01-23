@@ -202,14 +202,62 @@ def main(connect_4_won, connect_5_won, connect_6_won):
     '''main games logic'''
     full_game_over = False
     connect_x = 4
-    SCREEN = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size)
     board = create_board()
-    draw_board(board, SCREEN)
+    draw_board(board, screen)
     pygame.display.update()
     turn = 0
     while full_game_over is not True:
         if connect_4_won == True and connect_5_won == True and connect_6_won == True:
             full_game_over = True
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARE_SIZE))
+                position_x = event.pos[0]
+                if turn == 0:
+                    pygame.draw.circle(screen, RED, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
+                else:
+                    pygame.draw.circle(screen, YELLOW, (position_x, int(SQUARE_SIZE / 2)), CIRCLE_RAD)
+            draw_board(board, screen)
+            pygame.display.update()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARE_SIZE))
+                if turn == 0:
+                    position_x = event.pos[0]
+                    col = int(math.floor(position_x / SQUARE_SIZE))
+                    
+                    if is_valid_location(board, col) is True:
+                        row = next_empty_row(board, col)
+                        drop_peice(board, row, col, 1)
+                        
+                        if winning_move_for_connect_x(board, 1, connect_x) is True:
+                            label = font.render(f"Player 1 wins " + (connect_x), 1, RED)
+                            print('player 1 wins')
+                            screen.blit(label, (40,10))
+                            full_game_over = True
+                else:
+                    position_x = event.pos[0]
+                    col = int(math.floor(position_x / SQUARE_SIZE))
+                    
+                    if is_valid_location(board, col) is True:
+                        row = next_empty_row(board, col)
+                        drop_peice(board, row, col, 2)
+                        
+                        if winning_move_for_connect_x(board , 2, connect_x):
+                            label = font.render(f"Player 2 wins " + (connect_x), 1, RED)
+                            print('player 2 wins')
+                            screen.blit(label, (40,10))
+                            full_game_over = True
+                            
+                #print_board(board)
+                draw_board(board, screen)
+                
+                turn = (turn + 1) % 2 
+                if full_game_over is True:
+                    pygame.time.wait(8000)
+            
                      
                  
 
