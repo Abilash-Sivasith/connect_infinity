@@ -233,7 +233,7 @@ def main(connect_4_won, connect_5_won, connect_6_won):
                         drop_peice(board, row, col, 1)
                         
                         if winning_move_for_connect_x(board, 1, connect_x) is True:
-                            label = font.render(f"Player 1 wins " + (connect_x), 1, RED)
+                            label = font.render(f"Player 1 wins connect {connect_x}!", 1, RED)
                             print('player 1 wins')
                             screen.blit(label, (40,10))
                             full_game_over = True
@@ -246,7 +246,7 @@ def main(connect_4_won, connect_5_won, connect_6_won):
                         drop_peice(board, row, col, 2)
                         
                         if winning_move_for_connect_x(board , 2, connect_x):
-                            label = font.render(f"Player 2 wins " + (connect_x), 1, RED)
+                            label = font.render(f"Player 2 wins connect {connect_x}!", 1, RED)
                             print('player 2 wins')
                             screen.blit(label, (40,10))
                             full_game_over = True
