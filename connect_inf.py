@@ -235,7 +235,7 @@ def main(connect_4_won, connect_5_won, connect_6_won):
                         if winning_move_for_connect_x(board, 1, connect_x) is True:
                             label = font.render(f"Player 1 wins connect {connect_x}!", 1, RED)
                             screen.blit(label, (40,10))
-                            full_game_over = True
+                            connect_x += 1
                 else:
                     position_x = event.pos[0]
                     col = int(math.floor(position_x / SQUARE_SIZE))
@@ -247,7 +247,7 @@ def main(connect_4_won, connect_5_won, connect_6_won):
                         if winning_move_for_connect_x(board , 2, connect_x):
                             label = font.render(f"Player 2 wins connect {connect_x}!", 1, RED)
                             screen.blit(label, (40,10))
-                            full_game_over = True
+                            connect_x += 1
                             
                 #print_board(board)
                 draw_board(board, screen)
