@@ -33,6 +33,8 @@ CIRCLE_RAD = int(SQUARE_SIZE / 2 - 5)
 
 font = pygame.font.SysFont(None, 75)
 
+SCORECARD_FONT = pygame.font.SysFont('monospace', 40)
+
 
 
 def create_board():
