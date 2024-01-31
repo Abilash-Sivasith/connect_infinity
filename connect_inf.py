@@ -60,7 +60,7 @@ def next_empty_row(board, col):
             return row
 
 def print_board(board):
-    """function to print the game board"""
+    """function to print the game board to the terminal"""
     print(np.flip(board, 0))
 
 def winning_move_for_connect_x(board, peice, x):
@@ -117,11 +117,11 @@ def winning_move_for_connect_x(board, peice, x):
                 return True # winning move by 4 in a row diaganlly
 
 def draw_board(board, SCREEN):
+    # insert game score here
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):
 			pygame.draw.rect(SCREEN, BLUE, (col * SQUARE_SIZE, row * SQUARE_SIZE + SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 			pygame.draw.circle(SCREEN, BLACK, (int(col * SQUARE_SIZE+SQUARE_SIZE / 2), int(row * SQUARE_SIZE + SQUARE_SIZE + SQUARE_SIZE / 2)), CIRCLE_RAD)
-	
 	for col in range(COL_COUNT):
 		for row in range(ROW_COUNT):		
 			if board[row][col] == 1:
